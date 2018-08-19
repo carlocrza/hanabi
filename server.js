@@ -25,6 +25,7 @@ io.on('connection', function(socket) {
     players[socket.id] = {
       x: 300,
       y: 300
+    //  name: username
     };
   });
   socket.on('movement', function(data) {
