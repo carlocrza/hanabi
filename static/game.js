@@ -49,7 +49,7 @@ var canvas = document.getElementById('canvas');
 canvas.width = 800;
 canvas.height = 600;
 var context = canvas.getContext('2d');
-make_base();
+//make_base();
 function make_base() {
 	base_img = new Image();
 	base_img.src = 'https://ae01.alicdn.com/kf/HTB1UP_7HVXXXXXOXpXXq6xXFXXXK/english-hanabi-board-game-HANABI-with-english-rules-playing-game-cards-game-board-game-for-brazil.jpg'
@@ -62,6 +62,19 @@ socket.on('state', function(players) {
     var player = players[id];
     context.beginPath();
     context.arc(player.x, player.y, 10, 0, 2 * Math.PI);
+
+    //Adding text name section
+    var r = Math.random();
+    context.font = "20px Comic Sans MS";
+    var name;
+    if (r < .33) {
+	name = "Christine";
+    } else if (r < .66) {
+	name = "Jon";
+    } else {
+	name = "Carlo";
+    }
+    context.fillText(name, player.x - 10, player.y - 10);
     context.fill();
   }
 // make_base();
