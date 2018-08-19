@@ -42,7 +42,10 @@ io.on('connection', function(socket) {
       player.y += 5;
     }
   });
+  socket.on('disconnect', function(data) {
+    delete players[socket.id]; 
+  });
 });
 setInterval(function() {
   io.sockets.emit('state', players);
-}, 1000 / 60);
+}, 1000 / 144);

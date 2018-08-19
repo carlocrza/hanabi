@@ -49,6 +49,12 @@ var canvas = document.getElementById('canvas');
 canvas.width = 800;
 canvas.height = 600;
 var context = canvas.getContext('2d');
+make_base();
+function make_base() {
+	base_img = new Image();
+	base_img.src = 'https://ae01.alicdn.com/kf/HTB1UP_7HVXXXXXOXpXXq6xXFXXXK/english-hanabi-board-game-HANABI-with-english-rules-playing-game-cards-game-board-game-for-brazil.jpg'
+	base_img.onload = function() { context.drawImage(base_img, 0, 0) }
+}
 socket.on('state', function(players) {
   context.clearRect(0, 0, 800, 600);
   context.fillStyle = 'green';
@@ -58,4 +64,5 @@ socket.on('state', function(players) {
     context.arc(player.x, player.y, 10, 0, 2 * Math.PI);
     context.fill();
   }
+// make_base();
 });
