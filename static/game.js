@@ -22,6 +22,18 @@ document.addEventListener('keydown', function(event) {
     case 83: // S
       movement.down = true;
       break;
+    case 37: // left
+      movement.left = true;
+      break;
+    case 38: // up
+      movement.up = true;
+      break;
+    case 39: // right
+      movement.right = true;
+      break;
+    case 40: // down
+      movement.down = true;
+      break;
   }
 });
 document.addEventListener('keyup', function(event) {
@@ -38,6 +50,19 @@ document.addEventListener('keyup', function(event) {
     case 83: // S
       movement.down = false;
       break;
+
+	case 37: // left
+		movement.left = false;
+		break;
+	case 38: // up
+		movement.up = false;
+		break;
+	case 39: // right
+		movement.right = false;
+		break;
+	case 40: // down
+		movement.down = false;
+		break;
   }
 });
 socket.emit('new player');

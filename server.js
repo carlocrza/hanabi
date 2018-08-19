@@ -43,6 +43,8 @@ io.on('connection', function(socket) {
       player.y += 5;
     }
   });
+
+  // Deletes user once they close the game
   socket.on('disconnect', function(data) {
     delete players[socket.id]; 
   });
