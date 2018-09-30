@@ -21,13 +21,19 @@ setInterval(function() {
 }, 1000);
 var players = {};
 io.on('connection', function(socket) {
-  socket.on('new player', function() {
+  socket.on('new player', function(data) {
     players[socket.id] = {
       x: 300,
-      y: 300
-    //  name: username
+      y: 300,
+      name: data
     };
   });
+
+  socket.on('change_name', function(data) {
+    var player = players[socket.id] || {};
+    player.name = data;
+  })
+
   socket.on('movement', function(data) {
     var player = players[socket.id] || {};
     if (data.left) {

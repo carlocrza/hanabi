@@ -65,15 +65,29 @@ document.addEventListener('keyup', function(event) {
 		break;
   }
 });
-socket.emit('new player');
+// document.addEventListener("mouseup", function(event) {
+//   var x = event.clientX;
+//   var y = event.clientY;
+//   socket.on('state', function(players) {
+    
+//   });
+// });
+
+
+
+
+
+var name = prompt("what is thou name?");
+socket.emit('new player', name);
 setInterval(function() {
   socket.emit('movement', movement);
 }, 1000 / 60);
 
 var canvas = document.getElementById('canvas');
-canvas.width = 800;
-canvas.height = 600;
+canvas.width = 1000; //canvas.clientWidth;
+canvas.height = 600; //canvas.clientWidth;
 var context = canvas.getContext('2d');
+
 //make_base();
 function make_base() {
 	base_img = new Image();
@@ -81,8 +95,8 @@ function make_base() {
 	base_img.onload = function() { context.drawImage(base_img, 0, 0) }
 }
 socket.on('state', function(players) {
-  context.clearRect(0, 0, 800, 600);
-  context.fillStyle = 'green';
+  context.clearRect(0, 0, 1000, 600);
+  context.fillStyle = 'blue';
   for (var id in players) {
     var player = players[id];
     context.beginPath();
@@ -91,15 +105,14 @@ socket.on('state', function(players) {
     //Adding text name section
     var r = Math.random();
     context.font = "20px Comic Sans MS";
-    var name;
-    if (r < .33) {
+    /*if (r < .33) {
 	name = "Christine";
     } else if (r < .66) {
 	name = "Jon";
     } else {
 	name = "Carlo";
-    }
-    context.fillText(name, player.x - 10, player.y - 10);
+    }*/
+    context.fillText(player.name, player.x - 10, player.y - 10);
     context.fill();
   }
 // make_base();
